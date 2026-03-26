@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Körperbewusstsein fördern in Krippe, Kita & Grundschule</title>
+    <style>
+        :root {
+            --color-primary: #2180cd;
+            --color-primary-light: #e8f0f8;
+            --color-accent: #d4771a;
+            --color-accent-light: #fdeae5;
+            --color-success: #218043;
+            --color-success-light: #d9f0e5;
+            --color-text: #1f2121;
+            --color-text-light: #626c7c;
+            --color-bg: #fafbfc;
+            --color-border: #e0e4e8;
+            --color-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #1a5fa0 100%);
+            color: var(--color-white);
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        header .leitfrage {
+            font-size: 1.1em;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 30px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
+            max-width: 600px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        nav {
+            background: var(--color-white);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav button {
+            background: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover {
+            background: #1a5fa0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav button.active {
+            background: var(--color-accent);
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .intro-card {
+            background: var(--color-primary-light);
+            border-left: 5px solid var(--color-primary);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .intro-card h2 {
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .intro-card p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: var(--color-text);
+            margin-bottom: 10px;
+        }
+
+        .age-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .age-card {
+            background: var(--color-white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--color-primary);
+        }
+
+        .age-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .age-card.accent {
+            border-top-color: var(--color-accent);
+        }
+
+        .age-card.success {
+            border-top-color: var(--color-success);
+        }
+
+        .age-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .age-card.accent h3 {
+            color: var(--color-accent);
+        }
+
+        .age-card.success h3 {
+            color: var(--color-success);
+        }
+
+        .age-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .age-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: var(--color-text);
+        }
+
+        .age-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--color-success);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .measure-card {
+            background: var(--color-white);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .measure-card h4 {
+            color: var(--color-primary);
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .measure-card .description {
+            color: var(--color-text-light);
+            margin-bottom: 12px;
+            font-style: italic;
+            font-size: 0.95em;
+        }
+
+        .measure-card .details {
+            background: var(--color-primary-light);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+
+        .measure-card .details strong {
+            color: var(--color-primary);
+        }
+
+        .material-list {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+
+        .material-list h5 {
+            color: var(--color-text);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .material-list ul {
+            list-style-position: inside;
+            color: var(--color-text-light);
+            font-size: 0.9em;
+        }
+
+        .material-list li {
+            margin-bottom: 4px;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .principle-card {
+            background: var(--color-white);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--color-accent);
+        }
+
+        .principle-card h4 {
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .principle-card p {
+            color: var(--color-text-light);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .benefits {
+            background: var(--color-success-light);
+            border-left: 5px solid var(--color-success);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .benefits h3 {
+            color: var(--color-success);
+            margin-bottom: 15px;
+        }
+
+        .benefits ul {
+            list-style-position: inside;
+            color: var(--color-text);
+        }
+
+        .benefits li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: var(--color-text);
+            color: var(--color-white);
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            border-top: 4px solid var(--color-primary);
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .tip-box {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .tip-box strong {
+            color: #ff8c00;
+        }
+
+        .highlight {
+            background: rgba(33, 128, 205, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: var(--color-primary);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header .subtitle {
+                font-size: 1em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav button {
+                width: 100%;
+            }
+
+            .age-sections {
+                grid-template-columns: 1fr;
+            }
+
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌟 Körperbewusstsein fördern</h1>
+        <div class="subtitle">Praktische Maßnahmen für Krippe, Kita und Grundschule</div>
+        <div class="leitfrage">
+            💭 Wie können wir als pädagogische Fachkräfte Kinder dabei unterstützen, ein positives Verhältnis zu ihrem Körper zu entwickeln?
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><button onclick="showSection('intro')" class="nav-btn active">Einführung</button></li>
+            <li><button onclick="showSection('grundlagen')" class="nav-btn">Grundlagen</button></li>
+            <li><button onclick="showSection('massnahmen')" class="nav-btn">Maßnahmen</button></li>
+            <li><button onclick="showSection('methoden')" class="nav-btn">Methoden</button></li>
+            <li><button onclick="showSection('tipps')" class="nav-btn">Tipps & Hinweise</button></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Einführung -->
+        <div id="intro" class="section active">
+            <div class="intro-card">
+                <h2>Warum ist Körperbewusstsein so wichtig?</h2>
+                <p>Das <span class="highlight">Körperbewusstsein</span> ist eine der wichtigsten Grundlagen für das Selbstbewusstsein und die emotionale Entwicklung von Kindern. Wenn Kinder ihren Körper positiv erleben und mit Wertschätzung behandelt werden, entwickeln sie:</p>
+                <ul style="margin-left: 20px; margin-top: 15px;">
+                    <li>✨ Ein stabiles Selbstwertgefühl und Selbstvertrauen</li>
+                    <li>✨ Die Fähigkeit, ihre eigenen Grenzen wahrzunehmen und zu kommunizieren</li>
+                    <li>✨ Ein gesundes Verhältnis zu Bewegung und Gesundheit</li>
+                    <li>✨ Bessere soziale und emotionale Kompetenzen</li>
+                    <li>✨ Prävention vor körperlichen Grenzverletzungen</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Grundlagen -->
+        <div id="grundlagen" class="section">
+            <h2 style="color: var(--color-primary); margin-bottom: 30px; font-size: 2em;">📚 Theoretische Grundlagen</h2>
+
+            <div class="intro-card">
+                <h3>Entwicklungsphasen und Körperbewusstsein</h3>
+                <p>Die Entwicklung eines positiven Körperbewusstseins ist ein kontinuierlicher Prozess, der bereits in den ersten Lebensmonaten beginnt und sich über die gesamte Kindheit erstreckt. Jede Altersgruppe hat dabei spezifische Bedürfnisse und Fähigkeiten.</p>
+            </div>
+
+            <div class="age-sections">
+                <div class="age-card">
+                    <h3>0-3 Jahre (Krippe)</h3>
+                    <p style="color: var(--color-text-light); margin-bottom: 15px;"><strong>Schwerpunkt:</strong> Bindung & Körperpflege</p>
+                    <ul>
+                        <li>Kontinuierliche positive Körpererfahrungen durch Wickeln, Waschen, Massieren</li>
+                        <li>Sichere Bindung zu Bezugspersonen</li>
+                        <li>Exploration des eigenen Körpers (Finger lutschen, Körperteile greifen)</li>
+                        <li>Erste motorische Entwicklung (drehen, sitzen, krabbeln)</li>
+                        <li>Verständnis für Nähe- und Distanzwünsche</li>
+                    </ul>
+                </div>
+
+                <div class="age-card accent">
+                    <h3>3-6 Jahre (Kita)</h3>
+                    <p style="color: var(--color-text-light); margin-bottom: 15px;"><strong>Schwerpunkt:</strong> Entdeckung & Autonomie</p>
+                    <ul>
+                        <li>Intensive Körpererkundung durch Spiele und Projekte</li>
+                        <li>Benennung von Körperteilen mit korrekten Begriffen</li>
+                        <li>Entwicklung von Geschlechtsidentität</li>
+                        <li>Verständnis für Regeln und Grenzen</li>
+                        <li>Zunehmende Selbstständigkeit (An-/Ausziehen, Hygiene)</li>
+                        <li>Motorische Entwicklung durch Bewegung und Spiel</li>
+                    </ul>
+                </div>
+
+                <div class="age-card success">
+                    <h3>6-10 Jahre (Grundschule)</h3>
+                    <p style="color: var(--color-text-light); margin-bottom: 15px;"><strong>Schwerpunkt:</strong> Gesundheit & Kompetenz</p>
+                    <ul>
+                        <li>Vertiefung von Körperwissen (Organe, Gesundheit, Hygiene)</li>
+                        <li>Vorpubertäre Veränderungen verstehen</li>
+                        <li>Geschlechtersensible Prävention</li>
+                        <li>Motorische Spezialisierung (Koordination, Ausdauer)</li>
+                        <li>Soziale Vergleiche und Körperwahrnehmung</li>
+                        <li>Sprachfähigkeit über Körper und Gefühle ausbauen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="principles-grid" style="margin-top: 40px;">
+                <div class="principle-card">
+                    <h4>🔑 Autonomie respektieren</h4>
+                    <p>Kinder müssen über ihren Körper selbst bestimmen können. Erzwungen Sie keine Umarmungen oder Küsse – dies lehrt respektlose Grenzenachtung.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>🔑 Positive Verstärkung</h4>
+                    <p>Bestärken Sie Kinder in ihren körperlichen Fähigkeiten und Leistungen: „Du bist so mutig!" statt „Das ist aber unsportlich".</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>🔑 Sprachfähigkeit</h4>
+                    <p>Nutzen Sie korrekte, altersgerechte Begriffe für alle Körperteile – das schafft Sicherheit und Schutz vor Missbrauch.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>🔑 Vielfalt anerkennen</h4>
+                    <p>Alle Körper sind normal: unterschiedliche Größen, Farben, Fähigkeiten. Vermeiden Sie stigmatisierende Aussagen.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>🔑 Partizipation</h4>
+                    <p>Beziehen Sie Kinder in Entscheidungen ein, die ihren Körper betreffen – das fördert Selbstbestimmung.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h4>🔑 Emotionale Sicherheit</h4>
+                    <p>Schaffen Sie einen sicheren Raum, in dem Kinder ohne Scham über ihren Körper sprechen können.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Praktische Maßnahmen -->
+        <div id="massnahmen" class="section">
+            <h2 style="color: var(--color-primary); margin-bottom: 30px; font-size: 2em;">🎯 Praktische Maßnahmen für Krippe, Kita & Grundschule</h2>
+
+            <h3 style="color: var(--color-accent); margin-top: 40px; margin-bottom: 20px; font-size: 1.5em;">Krippe (0-3 Jahre)</h3>
+
+            <div class="measure-card">
+                <h4>🍼 Achtsame Körperpflege</h4>
+                <div class="description">Die Wickelsituation als bewusstes Bindungs- und Körperbewusstseinsmoment nutzen</div>
+                <div class="details">
+                    <p><strong>Umsetzung:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Während des Wickelns die Körperteile bewusst benennen: „Ich wasche jetzt deine Arme, deine Beine, deinen Po..."</li>
+                        <li>Die Wünsche des Kindes nach Nähe und Distanz respektieren</li>
+                        <li>Sanfte Berührungen, angenehme Materialien (warmes Wasser, weiches Handtuch)</li>
+                        <li>Mimische Reaktionen des Kindes beobachten und interpretieren</li>
+                    </ul>
+                    <div class="material-list">
+                        <h5>💡 Beispiel:</h5>
+                        <p style="margin-top: 5px;">„Ah, du magst es gerne, wenn ich sanft über deinen Bauch fahre. Das tut dir gut, oder? Wie schön, dass du mir das zeigst!"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>💆 Babymassage und Körperkontakt</h4>
+                <div class="description">Sanfte Berührungen zur Förderung von Körperwahrnehmung und Bindung</div>
+                <div class="details">
+                    <p><strong>Umsetzung:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Sanfte Fingerstriche über Arme, Beine und Rücken</li>
+                        <li>Mit den Fingern verschiedene Muster auf den Rücken zeichnen</li>
+                        <li>Händchen massieren, Füßchen streicheln</li>
+                        <li>Kinderliedern mit Körperkontakt verbinden (Kitzeln, Schmetterlingsspiel)</li>
+                    </ul>
+                    <div class="material-list">
+                        <h5>💡 Tipp:</h5>
+                        <p style="margin-top: 5px;">Beobachten Sie die Reaktionen des Kindes. Einige genießen intensive Berührung, andere bevorzugen leichte Streicher. Das ist okay und sollte respektiert werden.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>🌊 Erlebnisbad und Wassererfahrungen</h4>
+                <div class="description">Positive Körpererfahrungen durch Sinneserlebnisse im Wasser</div>
+                <div class="details">
+                    <p><strong>Umsetzung:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Regelmäßiges Baden oder Planschbecken nutzen</li>
+                        <li>Verschiedene Wassertexturen: kalt, warm, spritzig</li>
+                        <li>Bewegungsfreiheit im Wasser erleben</li>
+                        <li>Wasserfarben, Schwämme, leichte Spielzeuge zur Erkundung</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="color: var(--color-accent); margin-top: 50px; margin-bottom: 20px; font-size: 1.5em;">Kita (3-6 Jahre)</h3>
+
+            <div class="measure-card">
+                <h4>🎨 Körperprojekt: Mein einzigartiger Körper</h4>
+                <div class="description">Kreatives Körperbewusstseins-Projekt über mehrere Wochen</div>
+                <div class="details">
+                    <p><strong>Ablauf:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Woche 1:</strong> Körperumrisse auf Papier legen und nachfahren</li>
+                        <li><strong>Woche 2:</strong> Umrisse kreativ gestalten (malen, bekleben, verzieren)</li>
+                        <li><strong>Woche 3:</strong> Körperteile benennen und beschriften (mit korrekten Begriffen)</li>
+                        <li><strong>Woche 4:</strong> Vernissage mit Eltern und Freunden</li>
+                    </ul>
+                    <div class="material-list">
+                        <h5>📋 Material:</h5>
+                        <ul>
+                            <li>Großes Packpapier oder Tapete</li>
+                            <li>Stifte, Farben, Filzstifte</li>
+                            <li>Klebstoff, Naturmaterialien</li>
+                            <li>Glitzer, Perlen, Stoffe</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>📚 Bilderbuchbetrachtung: Körper und Unterschiede</h4>
+                <div class="description">Altersgerechte Aufklärungsbücher zusammen lesen und besprechen</div>
+                <div class="details">
+                    <p><strong>Empfohlene Bücher:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>„Von wegen Bienchen & Blümchen!" – modernes Aufklärungsbuch</li>
+                        <li>„Wir können was, was ihr nicht könnt!" – Körpererkundung und Prävention</li>
+                        <li>„Conni's Bilderbuchgeschichten" – Alltägliche Körpererfahrungen</li>
+                    </ul>
+                    <div class="material-list">
+                        <h5>💡 Gesprächsimpulse:</h5>
+                        <p style="margin-top: 5px;">„Welche Körperteile siehst du hier? Hast du auch diese Körperteile? Wie heißen sie bei dir?"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>🎭 Körpererkundungsspiele mit Regeln</h4>
+                <div class="description">Doktorspiele und Körpererkundung professionell begleiten</div>
+                <div class="details">
+                    <p><strong>Klare Regeln:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✓ Jedes Kind entscheidet freiwillig mit</li>
+                        <li>✓ Berührungen nur wo Badekleidung hingehört</li>
+                        <li>✓ Jedes Kind darf jederzeit „Stopp" sagen</li>
+                        <li>✓ Niemand tut dem anderen weh</li>
+                        <li>✓ Erwachsene spielen NIEMALS mit</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>Wichtig:</strong> Diese Spiele sind NICHT abnormal – sie sind normale Körpererkundung von Kindern und haben nichts mit erwachsener Sexualität zu tun.
+                    </div>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>🎵 Bewegungs- und Körperbewusstseinsspiele</h4>
+                <div class="description">Spielerisch Körper kennenlernen und motorische Fähigkeiten trainingieren</div>
+                <div class="details">
+                    <p><strong>Beispiele:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>„Kopf, Schulter, Knie und Fuß" – rhythmisch mit Bewegungen</li>
+                        <li>„Körperteile-Memory" – Körperteile berühren und benennen</li>
+                        <li>„Simon sagt" – Körperbewusstsein durch Bewegungsimitation</li>
+                        <li>Tänze und freie Bewegung zur Musik</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="color: var(--color-accent); margin-top: 50px; margin-bottom: 20px; font-size: 1.5em;">Grundschule (6-10 Jahre)</h3>
+
+            <div class="measure-card">
+                <h4>🏥 Projekt: Reise durch den menschlichen Körper</h4>
+                <div class="description">Fächerübergreifendes Projekt zu Organen, Gesundheit und Körperfunktionen</div>
+                <div class="details">
+                    <p><strong>Inhalte:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Skelett und Knochengerüst – wie bewegen wir uns?</li>
+                        <li>Muskeln und Bewegung – Kraft und Ausdauer</li>
+                        <li>Herz und Kreislauf – Puls messen und verstehen</li>
+                        <li>Verdauung – von der Speise zum Körper</li>
+                        <li>Gehirn und Nerven – wie fühle und denke ich?</li>
+                        <li>Zahngesundheit – richtig putzen und pflegen</li>
+                    </ul>
+                    <div class="material-list">
+                        <h5>🔬 Praktische Übungen:</h5>
+                        <ul>
+                            <li>Puls messen an verschiedenen Körperstellen</li>
+                            <li>Organmodelle bauen und beschriften</li>
+                            <li>Bewegungsexperimente (Gleichgewicht, Kraft, Ausdauer)</li>
+                            <li>Gesunde Ernährung praktizieren und besprechen</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>🛡️ Prävention: „Mein Körper gehört mir"</h4>
+                <div class="description">Gezieltes Training zu Grenzenachtung, Gefühlen und Nein-Sagen</div>
+                <div class="details">
+                    <p><strong>Schwerpunkte:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Angenehme und unangenehme Berührungen unterscheiden</li>
+                        <li>Gefühle benennen: Angst, Freude, Ekel, Unbehagen</li>
+                        <li>Laut „Nein" sagen trainieren</li>
+                        <li>Vertrauenspersonen erkennen und ansprechen</li>
+                        <li>Unterschied Geheimnisse (dürfen erzählt werden) & böse Geheimnisse</li>
+                    </ul>
+                    <div class="material-list">
+                        <h5>📖 Bilderbücher:</h5>
+                        <p style="margin-top: 5px;">„Das große und das kleine Nein" oder externe Präventionsprogramme (z.B. Zartbitter-Programm)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>📚 Aufklärungsunterricht: Körpervergänderungen</h4>
+                <div class="description">Altersgerechte Vorbereitung auf Pubertät und sexuelle Entwicklung</div>
+                <div class="details">
+                    <p><strong>Themen (Klasse 3-4):</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Geschlechtliche Unterschiede – Anatomie und Physik</li>
+                        <li>Hygiene und Körperpflege in der Pubertät</li>
+                        <li>Emotionale Veränderungen verstehen</li>
+                        <li>Erste Regelblutung – normal und okay</li>
+                        <li>Wie entstehen Babys? – altersgerechte Erklärung</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>Tipp:</strong> Informieren Sie Eltern vorher. Nutzen Sie sachliche, anatomisch korrekte Materialien.
+                    </div>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>💪 Bewegungsförderung und Sportangebote</h4>
+                <div class="description">Positive Körpererfahrungen durch Bewegung und Sport</div>
+                <div class="details">
+                    <p><strong>Angebote:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Regelmäßiger Sportunterricht mit vielfältigen Inhalten</li>
+                        <li>Yoga und Entspannungsangebote für Körperbewusstsein</li>
+                        <li>Schulwettbewerbe, die Vielfalt von Fähigkeiten zeigen</li>
+                        <li>Inklusives Sport-Angebot für alle Körper und Fähigkeitsgrade</li>
+                        <li>Selbstverteidigungskurse (Selbstbewusstsein und Grenzenachtung)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Methoden & Materialien -->
+        <div id="methoden" class="section">
+            <h2 style="color: var(--color-primary); margin-bottom: 30px; font-size: 2em;">🛠️ Bewährte Methoden & Materialien</h2>
+
+            <div class="intro-card">
+                <h3>Methoden-Überblick</h3>
+                <p>Hier finden Sie praktische Methoden, die sich in der Förderung von Körperbewusstsein bewährt haben.</p>
+            </div>
+
+            <div class="measure-card">
+                <h4>🎨 Kreative Techniken</h4>
+                <div class="details">
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Körper-Kunstwerk:</strong> Eigene Umrisse gestalten, bemalen, mit Materialien verzieren</li>
+                        <li><strong>Selbstporträts:</strong> Sich selbst zeichnen und reflektieren</li>
+                        <li><strong>Collagen:</strong> Körperteile aus Zeitschriften ausschneiden und collAgieren</li>
+                        <li><strong>Ton & Plastik:</strong> Den Körper in 3D erfassen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>🎯 Bewegungs- und Sensomotorik-Übungen</h4>
+                <div class="details">
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Barfuß-Pfad:</strong> Unterschiedliche Materialien mit den Füßen erkunden</li>
+                        <li><strong>Tastsäckchen:</strong> Mit verschlossenen Augen Materialien erfühlen</li>
+                        <li><strong>Massage-Spiele:</strong> „Pizza-Massage" – Kreise, Klopfen, Streicher auf dem Rücken</li>
+                        <li><strong>Entspannungs-Techniken:</strong> Progressive Muskelentspannung, Fantasiereisen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>📖 Bilderbuch-Methode</h4>
+                <div class="details">
+                    <p><strong>Ablauf:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>1. Gemeinsam Buch anschauen und vorlesen</li>
+                        <li>2. Gedanken austauschen: „Was hat dir gefallen? Was war überraschend?"</li>
+                        <li>3. Eigene Erfahrungen einbringen: „Hast du das auch schon erlebt?"</li>
+                        <li>4. Fragen stellen und sachlich beantworten</li>
+                        <li>5. Kreative Weiterverarbeitung (Malen, Basteln, Spiele)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>🔍 Beobachtungs- und Reflexionsmethode</h4>
+                <div class="details">
+                    <p><strong>Fokus:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Bewusst beobachten: Wie nimmt das Kind seinen Körper wahr?</li>
+                        <li>Motorische Entwicklung dokumentieren und vergleichen</li>
+                        <li>Positive Kommentare geben: „Du bist so mutig geklettert!"</li>
+                        <li>Elterngespräche führen über Fortschritte</li>
+                        <li>Portfolio dokumentieren – Entwicklung sichtbar machen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="color: var(--color-accent); margin-top: 40px; margin-bottom: 20px;">📚 Empfehlenswerte Materialien & Bücher</h3>
+
+            <div class="age-sections">
+                <div class="measure-card" style="border-left-color: var(--color-success);">
+                    <h4 style="color: var(--color-success);">Krippe (0-3)</h4>
+                    <ul style="margin-left: 20px; margin-top: 15px; color: var(--color-text-light); font-size: 0.95em;">
+                        <li>„Das bin ich! Erste liebevolle Erkundungen" (BZgA)</li>
+                        <li>Sinnesboxen & Tastmaterialien</li>
+                        <li>Babymassage-Anleitungen</li>
+                        <li>Bewegungs- und Schlapperlied-CDs</li>
+                    </ul>
+                </div>
+
+                <div class="measure-card" style="border-left-color: var(--color-primary);">
+                    <h4 style="color: var(--color-primary);">Kita (3-6)</h4>
+                    <ul style="margin-left: 20px; margin-top: 15px; color: var(--color-text-light); font-size: 0.95em;">
+                        <li>„Von wegen Bienchen & Blümchen!" (Carsten Müller)</li>
+                        <li>„Wir können was, was ihr nicht könnt!" (Zartbitter)</li>
+                        <li>Körperprojekt-Mappen (Reggio-Inspiration)</li>
+                        <li>Skelettmodelle & Körperanatomie-Poster</li>
+                    </ul>
+                </div>
+
+                <div class="measure-card" style="border-left-color: var(--color-accent);">
+                    <h4 style="color: var(--color-accent);">Grundschule (6-10)</h4>
+                    <ul style="margin-left: 20px; margin-top: 15px; color: var(--color-text-light); font-size: 0.95em;">
+                        <li>„Der menschliche Körper" (Wissen-Sachbücher)</li>
+                        <li>„Das große und das kleine Nein" (Zartbitter)</li>
+                        <li>Anatomie-Poster & Organ-Modelle</li>
+                        <li>Präventionsmaterialien (Selbstschutztrainings)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tipps & Hinweise -->
+        <div id="tipps" class="section">
+            <h2 style="color: var(--color-primary); margin-bottom: 30px; font-size: 2em;">💡 Tipps & Wichtige Hinweise</h2>
+
+            <div class="benefits">
+                <h3>✓ Erfolgreiche Förderung von Körperbewusstsein – Das sollten Sie beachten</h3>
+                <ul>
+                    <li><strong>Konsistenz:</strong> Körperbewusstsein ist kein einmaliges Projekt, sondern durchzieht den gesamten Alltag</li>
+                    <li><strong>Altersgerechtigheit:</strong> Passen Sie Ihre Maßnahmen an die Entwicklungsphase der Kinder an</li>
+                    <li><strong>Partizipation:</strong> Beziehen Sie Kinder in die Planung und Umsetzung ein – ihre Interessen sind der Ausgangspunkt</li>
+                    <li><strong>Elternarbeit:</strong> Informieren Sie Eltern transparent und regelmäßig über Ihre sexualpädagogischen Maßnahmen</li>
+                    <li><strong>Teamarbeit:</strong> Alle Fachkräfte sollten derselben sexualpädagogischen Haltung folgen und gleich handeln</li>
+                    <li><strong>Korrekte Sprache:</strong> Verwenden Sie IMMER korrekte anatomische Begriffe – keine Verniedlichungen</li>
+                    <li><strong>Grenzen respektieren:</strong> Zwingen Sie Kindern keine Umarmungen oder Küsse auf – respektieren Sie ihre Grenzen</li>
+                    <li><strong>Prävention:</strong> Ein aufgeklärtes Kind ist ein geschütztes Kind – Körperbewusstsein ist die beste Prävention</li>
+                </ul>
+            </div>
+
+            <div class="measure-card">
+                <h4>❌ Was Sie NICHT tun sollten</h4>
+                <div class="details">
+                    <ul style="margin-left: 20px;">
+                        <li>❌ Körperbewusstsein mit Sexualität verwechseln – beides ist unterschiedlich!</li>
+                        <li>❌ Kinder zwingen, Körperkontakt zu akzeptieren, den sie nicht wollen</li>
+                        <li>❌ Verniedlichungen oder Umschreibungen statt korrekter Begriffe nutzen</li>
+                        <li>❌ Scham oder Ekel vor dem Körper vermitteln</li>
+                        <li>❌ Unterschiede zwischen Mädchen und Jungen stereotyp darstellen</li>
+                        <li>❌ Körpererkundungsspiele verbieten – besser: professionell begleiten</li>
+                        <li>❌ Private Gespräche ohne Zeugen führen (Kinderschutz)</li>
+                        <li>❌ Persönliche Grenzverletzungen begehen oder ignorieren</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="measure-card">
+                <h4>🎓 Fachliche Haltung entwickeln</h4>
+                <div class="details">
+                    <p><strong>Reflexionsfragen für das Team:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Welche eigenen Erfahrungen bringe ich zum Thema Körper mit?</li>
+                        <li>Wo habe ich Unsicherheiten oder Tabus?</li>
+                        <li>Wie möchte ich mit sexualpädagogischen Situationen umgehen?</li>
+                        <li>Welche Regeln wollen wir als Team vereinbaren?</li>
+                        <li>Wie kommunizieren wir mit Eltern darüber?</li>
+                        <li>Wo brauchen wir Fortbildung und Unterstützung?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="benefits" style="background: var(--color-primary-light); border-left-color: var(--color-primary); margin-top: 40px;">
+                <h3 style="color: var(--color-primary);">📈 Effekte einer gelungenen Körperbewusstseinförderung</h3>
+                <ul>
+                    <li>✨ Kinder kennen und respektieren ihre eigenen Grenzen</li>
+                    <li>✨ Höheres Selbstbewusstsein und stabilerem Selbstwertgefühl</li>
+                    <li>✨ Bessere Fähigkeit, Gefühle wahrzunehmen und zu benennen</li>
+                    <li>✨ Offene, enttabusierte Kommunikation über Körper und Gesundheit</li>
+                    <li>✨ Natürlichere Einstellung zu körperlichen Funktionen (z.B. Menstruation)</li>
+                    <li>✨ Verbesserte Prävention vor sexuellen Grenzverletzungen</li>
+                    <li>✨ Stärkere Verbindung zwischen Körperwahrnehmung und Emotionen</li>
+                    <li>✨ Bessere motorische Entwicklung und Freude an Bewegung</li>
+                </ul>
+            </div>
+
+            <div class="tip-box" style="margin-top: 30px;">
+                <strong>Abschließender Gedanke:</strong> Kinder, die sich in ihrem Körper wohl und sicher fühlen, die ihre Grenzen kennen und kommunizieren können, und die in einer Umgebung aufwachsen, in der Körper und Sexualität nicht tabuisiert sind, haben die beste Grundlage für eine gesunde Entwicklung und Prävention vor Missbrauch und Grenzverletzungen.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Körperbewusstsein fördern in Krippe, Kita und Grundschule</strong></p>
+        <p>Fachlich fundierte Maßnahmen zur Unterstützung positiver Körpererfahrungen</p>
+        <p style="margin-top: 20px; opacity: 0.7;">Erstellt für pädagogische Fachkräfte in Aus- und Fortbildung</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Alle Sektionen verstecken
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Gewählte Sektion anzeigen
+            document.getElementById(sectionId).classList.add('active');
+
+            // Aktiven Button hervorheben
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Nach oben scrollen
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
